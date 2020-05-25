@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+    </data>
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <com.xkf.ppjoke.view.PPImageView
+            android:id="@+id/blurBackgroundView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:transitionName="blur_image"
+            tools:background="@color/color_theme_10" />
+
+        <com.xkf.ppjoke.view.PPImageView
+            android:id="@+id/coverView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:transitionName="cover" />
+
+        <ImageView
+            android:id="@+id/playBtnView"
+            android:layout_width="@dimen/dp_40"
+            android:layout_height="@dimen/dp_40"
+            android:layout_gravity="center"
+            android:src="@drawable/icon_video_play"
+            android:transitionName="play_btn"
+            tools:ignore="ContentDescription" />
+
+        <ProgressBar
+            android:id="@+id/bufferView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:indeterminate="true"
+            android:indeterminateTint="@color/color_theme"
+            android:transitionName="buffer_view"
+            android:visibility="gone" />
+    </FrameLayout>
+</layout>
