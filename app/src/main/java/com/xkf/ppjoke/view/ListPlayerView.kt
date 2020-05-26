@@ -2,6 +2,7 @@ package com.xkf.ppjoke.view
 
 import android.content.Context
 import android.util.AttributeSet
+import android.view.Gravity
 import android.view.LayoutInflater
 import android.view.View
 import android.widget.FrameLayout
@@ -62,5 +63,16 @@ class ListPlayerView : FrameLayout {
         layoutParams.width = layoutWidth
         layoutParams.height = layoutHeight
         setLayoutParams(blurLayoutParams)
+        
+        val coverLayoutParams = layoutPlayerViewBinding.coverView.layoutParams as LayoutParams
+        coverLayoutParams.width = coverWidth
+        coverLayoutParams.height = coverHeight
+        coverLayoutParams.gravity = Gravity.CENTER
+        layoutPlayerViewBinding.coverView.layoutParams = coverLayoutParams
+        
+        val playBtnLayoutParams =
+            layoutPlayerViewBinding.blurBackgroundView.layoutParams as LayoutParams
+        playBtnLayoutParams.gravity = Gravity.CENTER
+        layoutPlayerViewBinding.playBtnView.layoutParams = playBtnLayoutParams
     }
 }

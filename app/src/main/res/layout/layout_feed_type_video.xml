@@ -28,6 +28,11 @@
             app:feedText="@{feed.feeds_text}"
             app:lines="@{3}" />
 
+        <com.xkf.ppjoke.view.ListPlayerView
+            android:id="@+id/listPlayerView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp" />
 
         <include
             layout="@layout/layout_feed_tag"
