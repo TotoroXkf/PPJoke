@@ -2,8 +2,8 @@ package com.xkf.ppjoke.base
 
 import android.app.Application
 import com.xkf.libcommon.AppGlobal
-import com.xkf.libnetwork.ApiService
-import com.xkf.libnetwork.JsonConvert
+import com.xkf.libnetwork.request.ApiService
+import com.xkf.libnetwork.common.JsonConvert
 
 /**
  * author : xiakaifa
@@ -15,6 +15,8 @@ class MyApplication : Application() {
         
         AppGlobal.setApplication(this)
         AppConfig.init()
-        ApiService.init("http://123.56.232.18:8080/serverdemo/", JsonConvert())
+        ApiService.init("http://123.56.232.18:8080/serverdemo/",
+            JsonConvert()
+        )
     }
 }

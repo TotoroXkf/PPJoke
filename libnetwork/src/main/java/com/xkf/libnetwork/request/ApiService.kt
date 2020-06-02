@@ -1,6 +1,7 @@
-package com.xkf.libnetwork
+package com.xkf.libnetwork.request
 
 import android.annotation.SuppressLint
+import com.xkf.libnetwork.common.Convert
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import java.security.SecureRandom
@@ -17,8 +18,8 @@ object ApiService {
     lateinit var convert: Convert
     
     fun init(baseUrl: String, convert: Convert) {
-        this.baseUrl = baseUrl
-        this.convert = convert
+        ApiService.baseUrl = baseUrl
+        ApiService.convert = convert
     }
     
     init {

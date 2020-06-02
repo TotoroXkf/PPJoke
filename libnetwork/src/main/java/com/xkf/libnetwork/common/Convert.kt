@@ -1,4 +1,4 @@
-package com.xkf.libnetwork
+package com.xkf.libnetwork.common
 
 import java.lang.reflect.Type
 

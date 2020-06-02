@@ -4,10 +4,10 @@ import android.util.Log
 import androidx.paging.DataSource
 import androidx.paging.ItemKeyedDataSource
 import com.alibaba.fastjson.TypeReference
-import com.xkf.libnetwork.ApiResponse
-import com.xkf.libnetwork.ApiService
-import com.xkf.libnetwork.JsonCallback
-import com.xkf.libnetwork.Request
+import com.xkf.libnetwork.common.ApiResponse
+import com.xkf.libnetwork.request.ApiService
+import com.xkf.libnetwork.common.JsonCallback
+import com.xkf.libnetwork.request.Request
 import com.xkf.ppjoke.model.Feed
 import com.xkf.ppjoke.ui.AbstractViewModel
 

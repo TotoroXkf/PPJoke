@@ -1,4 +1,4 @@
-package com.xkf.libnetwork
+package com.xkf.libnetwork.common
 
 
 abstract class JsonCallback<T> {

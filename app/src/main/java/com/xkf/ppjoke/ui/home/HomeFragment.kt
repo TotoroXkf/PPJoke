@@ -22,7 +22,6 @@ class HomeFragment : AbstractListFragment<Feed, HomeViewModel>() {
     }
     
     override fun onLoadMore(refreshLayout: RefreshLayout) {
-    
+        refreshLayout.finishLoadMore()
     }
-    
 }

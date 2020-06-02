@@ -1,7 +1,5 @@
-package com.xkf.libnetwork
+package com.xkf.libnetwork.cache
 
-import com.xkf.libnetwork.cache.Cache
-import com.xkf.libnetwork.cache.CacheDatabase
 import java.io.ByteArrayInputStream
 import java.io.ByteArrayOutputStream
 import java.io.ObjectInputStream

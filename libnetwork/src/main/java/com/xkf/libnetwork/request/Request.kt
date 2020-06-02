@@ -1,8 +1,12 @@
-package com.xkf.libnetwork
+package com.xkf.libnetwork.request
 
 import android.annotation.SuppressLint
 import androidx.annotation.IntDef
 import androidx.arch.core.executor.ArchTaskExecutor
+import com.xkf.libnetwork.common.ApiResponse
+import com.xkf.libnetwork.common.JsonCallback
+import com.xkf.libnetwork.common.UrlCreator
+import com.xkf.libnetwork.cache.CacheManager
 import okhttp3.Call
 import okhttp3.Callback
 import okhttp3.Response
@@ -77,7 +81,8 @@ abstract class Request<T, R : Request<T, R>>(var url: String) {
                 }
                 
                 override fun onFailure(call: Call, e: IOException) {
-                    val apiResponse = ApiResponse<T>()
+                    val apiResponse =
+                        ApiResponse<T>()
                     apiResponse.message = e.message ?: ""
                     callback?.onError(apiResponse)
                 }
@@ -87,7 +92,8 @@ abstract class Request<T, R : Request<T, R>>(var url: String) {
     
     private fun readCache(): ApiResponse<T>? {
         if (cacheKey.isEmpty()) {
-            cacheKey = UrlCreator.createUrlFromParam(url, params)
+            cacheKey =
+                UrlCreator.createUrlFromParam(url, params)
         }
         val cache = CacheManager.getCache(cacheKey)
         if (cache != null) {
@@ -128,7 +134,8 @@ abstract class Request<T, R : Request<T, R>>(var url: String) {
         
         if (cacheStrategy != NET_ONLY && response.isSuccessful && apiResponse.body != null && apiResponse.body is Serializable) {
             if (cacheKey.isEmpty()) {
-                cacheKey = UrlCreator.createUrlFromParam(url, params)
+                cacheKey =
+                    UrlCreator.createUrlFromParam(url, params)
             }
             CacheManager.saveCache(cacheKey, apiResponse.body)
         }

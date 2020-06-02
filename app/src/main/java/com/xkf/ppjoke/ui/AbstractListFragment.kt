@@ -22,9 +22,9 @@ import java.lang.reflect.ParameterizedType
 
 abstract class AbstractListFragment<T, M : AbstractViewModel<T>> : Fragment(), OnRefreshListener,
     OnLoadMoreListener {
-    private lateinit var viewBinding: LayoutRefreshViewBinding
+    lateinit var viewBinding: LayoutRefreshViewBinding
     private lateinit var adapter: PagedListAdapter<T, RecyclerView.ViewHolder>
-    private lateinit var viewModel: M
+    lateinit var viewModel: M
     
     override fun onCreateView(
         inflater: LayoutInflater,
