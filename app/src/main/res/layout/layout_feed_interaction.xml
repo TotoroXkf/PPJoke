@@ -35,6 +35,7 @@
             android:textSize="@dimen/sp_14"
             app:backgroundTint="@color/color_white"
             app:cornerRadius="0dp"
+            app:iconSize="20dp"
             app:icon="@{feed.ugc.hasLiked?@drawable/icon_cell_liked:@drawable/icon_cell_like}"
             app:iconGravity="textStart"
             app:iconPadding="4dp"
@@ -47,6 +48,7 @@
         <com.google.android.material.button.MaterialButton
             android:id="@+id/disLikeView"
             android:layout_width="0dp"
+            app:iconSize="20dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:text="踩"
@@ -67,6 +69,7 @@
         <com.google.android.material.button.MaterialButton
             android:id="@+id/commentView"
             android:layout_width="0dp"
+            app:iconSize="20dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:text="@{feed.ugc.commentCount>0?StringConvert.INSTANCE.convertFeedUgc(feed.ugc.commentCount):@string/feed_comment}"
@@ -88,6 +91,7 @@
             android:id="@+id/shareView"
             android:layout_width="0dp"
             android:layout_height="match_parent"
+            app:iconSize="20dp"
             android:layout_weight="1"
             android:text="@{feed.ugc.shareCount>0?StringConvert.INSTANCE.convertFeedUgc(feed.ugc.shareCount):@string/share}"
             android:textColor="@color/color_3d3"

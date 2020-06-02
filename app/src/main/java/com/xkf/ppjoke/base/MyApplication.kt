@@ -15,6 +15,6 @@ class MyApplication : Application() {
         
         AppGlobal.setApplication(this)
         AppConfig.init()
-        ApiService.init("", JsonConvert())
+        ApiService.init("http://123.56.232.18:8080/serverdemo/", JsonConvert())
     }
 }

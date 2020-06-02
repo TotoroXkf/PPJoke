@@ -50,4 +50,12 @@ object ApiService {
         HttpsURLConnection.setDefaultSSLSocketFactory(sslContext.socketFactory)
         HttpsURLConnection.setDefaultHostnameVerifier { _, _ -> true }
     }
+    
+    fun <T> get(url: String): GetRequest<T> {
+        return GetRequest(baseUrl + url)
+    }
+    
+    fun <T> post(url: String): PostRequest<T> {
+        return PostRequest(baseUrl + url)
+    }
 }

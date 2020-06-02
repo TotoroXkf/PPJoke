@@ -1,38 +1,19 @@
 package com.xkf.ppjoke.view
 
-import android.annotation.SuppressLint
 import android.content.Context
 import android.graphics.drawable.Drawable
 import android.util.AttributeSet
 import android.view.ViewGroup
-import androidx.databinding.BindingAdapter
 import com.bumptech.glide.Glide
-import com.bumptech.glide.load.resource.bitmap.CircleCrop
 import com.bumptech.glide.request.target.CustomTarget
 import com.bumptech.glide.request.transition.Transition
-import com.xkf.ppjoke.utils.Utils
+import com.xkf.libcommon.Utils
 import jp.wasabeef.glide.transformations.BlurTransformation
 
 
 class PPImageView : androidx.appcompat.widget.AppCompatImageView {
     constructor(context: Context?) : super(context)
     constructor(context: Context?, attrs: AttributeSet?) : super(context, attrs)
-    
-    companion object {
-        @SuppressLint("CheckResult")
-        @BindingAdapter(value = ["imageUrl", "isCircle"])
-        fun setImageData(view: PPImageView, imageUrl: String, isCircle: Boolean) {
-            val builder = Glide.with(view).load(imageUrl)
-            if (isCircle) {
-                builder.transform(CircleCrop())
-            }
-            val layoutParams = view.layoutParams
-            if (layoutParams != null && layoutParams.width > 0 && layoutParams.height > 0) {
-                builder.override(layoutParams.width, layoutParams.height)
-            }
-            builder.into(view)
-        }
-    }
     
     fun bindData(
         widthPx: Int,

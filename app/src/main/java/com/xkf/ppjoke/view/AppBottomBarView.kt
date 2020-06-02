@@ -12,7 +12,7 @@ import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.android.material.bottomnavigation.LabelVisibilityMode
 import com.xkf.ppjoke.R
 import com.xkf.ppjoke.base.AppConfig
-import com.xkf.ppjoke.utils.Utils
+import com.xkf.libcommon.Utils
 import com.xkf.ppjoke.model.BottomBar
 
 

@@ -1,4 +1,4 @@
-package com.xkf.ppjoke.utils
+package com.xkf.libcommon
 
 import android.content.res.Resources
 import kotlin.math.floor
