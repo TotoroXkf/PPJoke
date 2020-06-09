@@ -1,4 +1,4 @@
-package com.xkf.ppjoke.ui
+package com.xkf.ppjoke.base
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
@@ -8,7 +8,7 @@ import androidx.paging.LivePagedListBuilder
 import androidx.paging.PagedList
 
 abstract class AbstractViewModel<T> : ViewModel() {
-    private lateinit var dataSource: DataSource<Int, T>
+    lateinit var dataSource: DataSource<Int, T>
     val pageLiveData: LiveData<PagedList<T>>
     val boundaryPageData = MutableLiveData<Boolean>()
     

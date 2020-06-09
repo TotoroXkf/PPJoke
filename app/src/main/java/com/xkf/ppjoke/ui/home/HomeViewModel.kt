@@ -1,26 +1,30 @@
 package com.xkf.ppjoke.ui.home
 
-import android.util.Log
+import androidx.lifecycle.MutableLiveData
 import androidx.paging.DataSource
 import androidx.paging.ItemKeyedDataSource
+import androidx.paging.PagedList
 import com.alibaba.fastjson.TypeReference
 import com.xkf.libnetwork.common.ApiResponse
-import com.xkf.libnetwork.request.ApiService
 import com.xkf.libnetwork.common.JsonCallback
+import com.xkf.libnetwork.request.ApiService
 import com.xkf.libnetwork.request.Request
+import com.xkf.ppjoke.base.AbstractViewModel
+import com.xkf.ppjoke.base.MutableDataSource
 import com.xkf.ppjoke.model.Feed
-import com.xkf.ppjoke.ui.AbstractViewModel
 
 
 class HomeViewModel : AbstractViewModel<Feed>() {
+    val cacheLiveData = MutableLiveData<PagedList<Feed>>()
+    
     @Volatile
     var withCache = true
     
     override fun createDataSource(): DataSource<Int, Feed> {
-        return itemKeyedDataSource
+        return HomeDataSource()
     }
     
-    private val itemKeyedDataSource = object : ItemKeyedDataSource<Int, Feed>() {
+    inner class HomeDataSource : ItemKeyedDataSource<Int, Feed>() {
         override fun loadInitial(
             params: LoadInitialParams<Int>,
             callback: LoadInitialCallback<Feed>
@@ -54,7 +58,16 @@ class HomeViewModel : AbstractViewModel<Feed>() {
             request.cacheStrategy = Request.CACHE_ONLY
             request.execute(object : JsonCallback<List<Feed>>() {
                 override fun onCacheSuccess(response: ApiResponse<List<Feed>>) {
-                    Log.e("xkf", "onCacheSuccess: " + response.body?.size)
+                    val body = response.body
+                    body ?: return
+                    val dataSource = MutableDataSource<Int, Feed>()
+                    dataSource.list.addAll(body)
+                    val pageListConfig = PagedList.Config.Builder()
+                        .setPageSize(10)
+                        .setInitialLoadSizeHint(10)
+                        .build()
+                    val pageList = dataSource.buildNewPageList(pageListConfig)
+                    cacheLiveData.postValue(pageList)
                 }
             })
         }

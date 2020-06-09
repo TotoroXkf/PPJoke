@@ -1,4 +1,4 @@
-package com.xkf.ppjoke.ui
+package com.xkf.ppjoke.base
 
 import android.os.Bundle
 import android.util.Log
@@ -23,7 +23,7 @@ import java.lang.reflect.ParameterizedType
 abstract class AbstractListFragment<T, M : AbstractViewModel<T>> : Fragment(), OnRefreshListener,
     OnLoadMoreListener {
     lateinit var viewBinding: LayoutRefreshViewBinding
-    private lateinit var adapter: PagedListAdapter<T, RecyclerView.ViewHolder>
+    lateinit var pageListAdapter: PagedListAdapter<T, RecyclerView.ViewHolder>
     lateinit var viewModel: M
     
     override fun onCreateView(
@@ -43,8 +43,8 @@ abstract class AbstractListFragment<T, M : AbstractViewModel<T>> : Fragment(), O
         viewBinding.refreshLayout.setOnRefreshListener(this)
         viewBinding.refreshLayout.setOnLoadMoreListener(this)
         
-        adapter = getAdapter()
-        viewBinding.recyclerView.adapter = adapter
+        pageListAdapter = getAdapter()
+        viewBinding.recyclerView.adapter = pageListAdapter
         val itemDecoration = DividerItemDecoration(activity, LinearLayoutManager.HORIZONTAL)
         itemDecoration.setDrawable(requireActivity().getDrawable(R.drawable.list_divider)!!)
         viewBinding.recyclerView.addItemDecoration(itemDecoration)
@@ -57,7 +57,7 @@ abstract class AbstractListFragment<T, M : AbstractViewModel<T>> : Fragment(), O
             val modelClass = (argument as Class<*>).asSubclass(AbstractViewModel::class.java)
             viewModel = ViewModelProvider(this).get(modelClass) as M
             viewModel.pageLiveData.observe(viewLifecycleOwner, Observer {
-                adapter.submitList(it)
+                pageListAdapter.submitList(it)
             })
             viewModel.boundaryPageData.observe(viewLifecycleOwner, Observer {
                 finishRefresh(it)
@@ -73,13 +73,13 @@ abstract class AbstractListFragment<T, M : AbstractViewModel<T>> : Fragment(), O
     
     fun submit(pageList: PagedList<T>) {
         if (pageList.isNotEmpty()) {
-            adapter.submitList(pageList)
+            pageListAdapter.submitList(pageList)
         }
         finishRefresh(pageList.size > 0)
     }
     
     private fun finishRefresh(hasData: Boolean) {
-        val currentList = adapter.currentList
+        val currentList = pageListAdapter.currentList
         
         val state = viewBinding.refreshLayout.state
         Log.e("xkf", "finishRefresh: $state")
