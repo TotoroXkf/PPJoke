@@ -38,11 +38,12 @@ abstract class Request<T, R : Request<T, R>>(var url: String) {
     }
     
     fun addParam(key: String, value: Any): R {
-        val field = value::class.java.getDeclaredField("TYPE")
-        val clazz: Class<*> = field.get(null) as Class<*>
-        if (clazz.isPrimitive) {
-            params[key] = value
-        }
+        params[key] = value
+//        val field = value::class.java.getDeclaredField("TYPE")
+//        val clazz: Class<*> = field.get(null) as Class<*>
+//        if (clazz.isPrimitive) {
+//            params[key] = value
+//        }
         return this as R
     }
     

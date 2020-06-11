@@ -1,6 +1,7 @@
 package com.xkf.ppjoke.ui.notification
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -14,6 +15,7 @@ class NotificationFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+        Log.e("xkf", "NotificationFragment onCreateView: ")
         return inflater.inflate(R.layout.fragment_notification, container, false)
     }
 }
