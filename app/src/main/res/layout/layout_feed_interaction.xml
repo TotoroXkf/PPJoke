@@ -11,6 +11,12 @@
 
         <import type="android.content.Context" />
 
+        <import type="com.xkf.ppjoke.ui.home.InterActionPresenterKt" />
+
+        <variable
+            name="lifecycleOwner"
+            type="androidx.lifecycle.LifecycleOwner" />
+
         <variable
             name="feed"
             type="Feed" />
@@ -30,15 +36,16 @@
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
+            android:onClick="@{()->InterActionPresenterKt.toggleFeedLike(lifecycleOwner,feed)}"
             android:text="@{feed.ugc.likeCount>0?StringConvert.INSTANCE.convertFeedUgc(feed.ugc.likeCount):@string/like}"
             android:textColor="@{feed.ugc.hasLiked?@color/color_theme:@color/color_3d3}"
             android:textSize="@dimen/sp_14"
             app:backgroundTint="@color/color_white"
             app:cornerRadius="0dp"
-            app:iconSize="20dp"
             app:icon="@{feed.ugc.hasLiked?@drawable/icon_cell_liked:@drawable/icon_cell_like}"
             app:iconGravity="textStart"
             app:iconPadding="4dp"
+            app:iconSize="20dp"
             app:iconTint="@{feed.ugc.hasLiked?@color/color_theme:@color/color_3d3}"
             tools:icon="@drawable/icon_cell_like"
             tools:iconTint="@color/color_3d3"
@@ -48,9 +55,9 @@
         <com.google.android.material.button.MaterialButton
             android:id="@+id/disLikeView"
             android:layout_width="0dp"
-            app:iconSize="20dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
+            android:onClick="@{()->InterActionPresenterKt.toggleFeedDiss(lifecycleOwner,feed)}"
             android:text="踩"
             android:textColor="@{feed.ugc.hasdiss?@color/color_theme:@color/color_3d3}"
             android:textSize="@dimen/sp_14"
@@ -59,6 +66,7 @@
             app:icon="@{feed.ugc.hasdiss?@drawable/icon_cell_dissed:@drawable/icon_cell_diss}"
             app:iconGravity="textStart"
             app:iconPadding="4dp"
+            app:iconSize="20dp"
             app:iconTint="@{feed.ugc.hasdiss?@color/color_theme:@color/color_3d3}"
             tools:icon="@drawable/icon_cell_diss"
             tools:iconTint="@color/color_3d3"
@@ -69,7 +77,6 @@
         <com.google.android.material.button.MaterialButton
             android:id="@+id/commentView"
             android:layout_width="0dp"
-            app:iconSize="20dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:text="@{feed.ugc.commentCount>0?StringConvert.INSTANCE.convertFeedUgc(feed.ugc.commentCount):@string/feed_comment}"
@@ -80,6 +87,7 @@
             app:icon="@drawable/icon_cell_comment"
             app:iconGravity="textStart"
             app:iconPadding="4dp"
+            app:iconSize="20dp"
             app:iconTint="@color/color_3d3"
             tools:icon="@drawable/icon_cell_comment"
             tools:iconTint="@color/color_3d3"
@@ -91,7 +99,6 @@
             android:id="@+id/shareView"
             android:layout_width="0dp"
             android:layout_height="match_parent"
-            app:iconSize="20dp"
             android:layout_weight="1"
             android:text="@{feed.ugc.shareCount>0?StringConvert.INSTANCE.convertFeedUgc(feed.ugc.shareCount):@string/share}"
             android:textColor="@color/color_3d3"
@@ -101,6 +108,7 @@
             app:icon="@drawable/icon_cell_share"
             app:iconGravity="textStart"
             app:iconPadding="4dp"
+            app:iconSize="20dp"
             app:iconTint="@color/color_3d3"
             tools:icon="@drawable/icon_cell_share"
             tools:iconTint="@color/color_3d3"

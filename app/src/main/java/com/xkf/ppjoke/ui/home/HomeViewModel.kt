@@ -12,18 +12,19 @@ import com.xkf.libnetwork.request.Request
 import com.xkf.ppjoke.base.AbstractViewModel
 import com.xkf.ppjoke.base.MutableDataSource
 import com.xkf.ppjoke.model.Feed
+import com.xkf.ppjoke.ui.login.UserManager
 
 
 class HomeViewModel : AbstractViewModel<Feed>() {
     val cacheLiveData = MutableLiveData<PagedList<Feed>>()
-    
+
     @Volatile
     var withCache = true
-    
+
     override fun createDataSource(): DataSource<Int, Feed> {
         return HomeDataSource()
     }
-    
+
     inner class HomeDataSource : ItemKeyedDataSource<Int, Feed>() {
         override fun loadInitial(
             params: LoadInitialParams<Int>,
@@ -32,29 +33,29 @@ class HomeViewModel : AbstractViewModel<Feed>() {
             loadData(0, callback)
             withCache = false
         }
-        
+
         override fun loadAfter(params: LoadParams<Int>, callback: LoadCallback<Feed>) {
             loadData(params.key, callback)
         }
-        
+
         override fun loadBefore(params: LoadParams<Int>, callback: LoadCallback<Feed>) {
             callback.onResult(emptyList())
         }
-        
+
         override fun getKey(item: Feed): Int {
             return item.id
         }
     }
-    
+
     private fun loadData(key: Int, callback: ItemKeyedDataSource.LoadCallback<Feed>) {
         if (withCache) {
             val request = ApiService.get<List<Feed>>("feeds/queryHotFeedsList")
-//                .addParam("feedType", 0)
-                .addParam("userId", 0)
+//                .addParam("feedType", null)
+                .addParam("userId", UserManager.getUserId())
                 .addParam("feedId", key)
                 .addParam("pageCount", 10)
             request.type = object : TypeReference<List<Feed>>() {}.type
-            
+
             request.cacheStrategy = Request.CACHE_ONLY
             request.execute(object : JsonCallback<List<Feed>>() {
                 override fun onCacheSuccess(response: ApiResponse<List<Feed>>) {
@@ -73,7 +74,7 @@ class HomeViewModel : AbstractViewModel<Feed>() {
         }
         val request = ApiService.get<List<Feed>>("feeds/queryHotFeedsList")
 //            .addParam("feedType", 0)
-            .addParam("userId", 0)
+            .addParam("userId", UserManager.getUserId())
             .addParam("feedId", key)
             .addParam("pageCount", 10)
         request.type = object : TypeReference<List<Feed>>() {}.type
@@ -85,7 +86,7 @@ class HomeViewModel : AbstractViewModel<Feed>() {
         val response = request.execute()
         val data = response.body ?: emptyList()
         callback.onResult(data)
-        
+
         if (key > 0) {
             boundaryPageData.postValue(data.isNotEmpty())
         }

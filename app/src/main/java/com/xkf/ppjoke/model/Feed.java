@@ -1,5 +1,8 @@
 package com.xkf.ppjoke.model;
 
+import androidx.databinding.BaseObservable;
+import androidx.databinding.Bindable;
+
 import java.io.Serializable;
 import java.util.Objects;
 
@@ -7,7 +10,7 @@ import java.util.Objects;
  * author : xiakaifa
  * 2020/5/21
  */
-public class Feed implements Serializable {
+public class Feed extends BaseObservable implements Serializable {
     public int id;
     public long itemId;
     public int itemType;
@@ -25,6 +28,14 @@ public class Feed implements Serializable {
     public User author;
     public Comment topComment;
     public Ugc ugc;
+
+    @Bindable
+    public Ugc getUgc() {
+        if (ugc == null) {
+            ugc = new Ugc();
+        }
+        return ugc;
+    }
 
     @Override
     public boolean equals(Object o) {

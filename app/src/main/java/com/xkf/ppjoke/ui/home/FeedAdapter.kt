@@ -4,6 +4,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.ViewDataBinding
+import androidx.lifecycle.LifecycleOwner
 import androidx.paging.PagedListAdapter
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
@@ -56,6 +57,7 @@ class FeedAdapter(val category: String) :
         fun bindData(feed: Feed) {
             if (viewDataBinding is LayoutFeedTypeImageBinding) {
                 viewDataBinding.feed = feed
+                viewDataBinding.lifecycleOwner = itemView.context as LifecycleOwner
                 viewDataBinding.feedImage.bindData(
                     widthPx = feed.width,
                     heightPx = feed.height,
@@ -64,6 +66,7 @@ class FeedAdapter(val category: String) :
                 )
             } else if (viewDataBinding is LayoutFeedTypeVideoBinding) {
                 viewDataBinding.feed = feed
+                viewDataBinding.lifecycleOwner = itemView.context as LifecycleOwner
                 viewDataBinding.listPlayerView.bindData(
                     category = category,
                     widthPx = feed.width,
