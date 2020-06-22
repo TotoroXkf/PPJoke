@@ -5,6 +5,10 @@
 
     <data>
 
+        <import type="com.xkf.ppjoke.ui.home.InterActionPresenterKt" />
+
+        <import type="android.content.Context" />
+
         <import type="com.xkf.ppjoke.model.Comment" />
 
         <import type="com.xkf.ppjoke.utils.StringConvert" />
@@ -16,6 +20,10 @@
         <variable
             name="comment"
             type="Comment" />
+
+        <variable
+            name="lifecycleOwner"
+            type="androidx.lifecycle.LifecycleOwner" />
     </data>
 
     <FrameLayout
@@ -87,7 +95,8 @@
                 <ImageView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="@dimen/dp_2"
+                    android:layout_marginStart="@dimen/dp_2"
+                    android:onClick="@{()->InterActionPresenterKt.toggleCommentLike(lifecycleOwner,comment)}"
                     android:src="@{comment.ugc.hasLiked?@drawable/icon_cell_liked:@drawable/icon_cell_like}"
                     tools:ignore="ContentDescription"
                     tools:src="@drawable/icon_cell_liked">

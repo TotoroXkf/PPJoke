@@ -60,6 +60,12 @@ dependencies {
     implementation group: 'com.google.android.exoplayer', name: 'exoplayer-dash', version: '2.9.6'
     implementation group: 'androidx.paging', name: 'paging-runtime', version: '2.1.2'
 
+    implementation group: 'com.google.android.exoplayer', name: 'exoplayer-core', version: '2.11.5'
+    implementation group: 'com.google.android.exoplayer', name: 'exoplayer-dash', version: '2.11.5'
+    implementation group: 'com.google.android.exoplayer', name: 'exoplayer-ui', version: '2.11.5'
+
+
+
     implementation project(':libannotation')
     implementation project(':libnetwork')
     implementation project(':libcommon')

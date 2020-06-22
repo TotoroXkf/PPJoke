@@ -26,8 +26,8 @@
 
         <ImageView
             android:id="@+id/playBtnView"
-            android:layout_width="@dimen/dp_40"
-            android:layout_height="@dimen/dp_40"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
             android:layout_gravity="center"
             android:src="@drawable/icon_video_play"
             android:transitionName="play_btn"
