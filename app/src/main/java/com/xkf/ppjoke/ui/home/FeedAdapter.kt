@@ -64,7 +64,7 @@ open class FeedAdapter(val category: String) :
                     widthPx = feed.width,
                     heightPx = feed.height,
                     marginLeft = 16,
-                    imageUrl = feed.cover
+                    imageUrl = feed.cover ?: ""
                 )
             } else if (viewDataBinding is LayoutFeedTypeVideoBinding) {
                 viewDataBinding.feed = feed

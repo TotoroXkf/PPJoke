@@ -13,7 +13,7 @@
       "size": 24,
       "enable": true,
       "index": 1,
-      "pageUrl": "main/tabs/dash",
+      "pageUrl": "main/tabs/sofa",
       "title": "沙发"
     },
     {
@@ -21,14 +21,14 @@
       "enable": true,
       "index": 2,
       "tintColor": "#ff678f",
-      "pageUrl": "main/tabs/capture",
+      "pageUrl": "main/tabs/publish",
       "title": ""
     },
     {
       "size": 24,
       "enable": true,
       "index": 3,
-      "pageUrl": "main/tabs/notification",
+      "pageUrl": "main/tabs/find",
       "title": "发现"
     },
     {

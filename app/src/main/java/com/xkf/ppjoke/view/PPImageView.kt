@@ -14,7 +14,7 @@ import jp.wasabeef.glide.transformations.BlurTransformation
 class PPImageView : androidx.appcompat.widget.AppCompatImageView {
     constructor(context: Context?) : super(context)
     constructor(context: Context?, attrs: AttributeSet?) : super(context, attrs)
-    
+
     fun bindData(
         widthPx: Int,
         heightPx: Int,
@@ -41,7 +41,7 @@ class PPImageView : androidx.appcompat.widget.AppCompatImageView {
         setSize(widthPx, heightPx, marginLeft, maxWidth, maxHeight)
         setImageData(this, imageUrl, false)
     }
-    
+
     private fun setSize(width: Int, height: Int, marginLeft: Int, maxWidth: Int, maxHeight: Int) {
         val finalWidth: Int
         val finalHeight: Int
@@ -53,11 +53,12 @@ class PPImageView : androidx.appcompat.widget.AppCompatImageView {
             finalHeight = maxHeight
             finalWidth = (finalHeight.toFloat() * (width.toFloat() / height.toFloat())).toInt()
         }
-        val layoutParams = ViewGroup.MarginLayoutParams(finalWidth, finalHeight)
-        layoutParams.leftMargin = Utils.dpToPx(marginLeft)
-        setLayoutParams(layoutParams)
+        val layoutParam = layoutParams as ViewGroup.MarginLayoutParams
+        layoutParam.width = finalWidth
+        layoutParam.height = finalHeight
+        layoutParams = layoutParam
     }
-    
+
     fun setBlurImageView(coverUrl: String) {
         Glide.with(this)
             .load(coverUrl)
@@ -67,7 +68,7 @@ class PPImageView : androidx.appcompat.widget.AppCompatImageView {
             .into(object : CustomTarget<Drawable>() {
                 override fun onLoadCleared(placeholder: Drawable?) {
                 }
-                
+
                 override fun onResourceReady(
                     resource: Drawable,
                     transition: Transition<in Drawable>?

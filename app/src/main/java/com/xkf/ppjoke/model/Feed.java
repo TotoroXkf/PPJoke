@@ -47,14 +47,14 @@ public class Feed extends BaseObservable implements Serializable {
                 itemType == feed.itemType &&
                 createTime == feed.createTime &&
                 Double.compare(feed.duration, duration) == 0 &&
-                feeds_text.equals(feed.feeds_text) &&
+//                feeds_text.equals(feed.feeds_text) &&
                 authorId == feed.authorId &&
 //                activityIcon.equals(feed.activityIcon) &&
 //                activityText.equals(feed.activityText) &&
                 width == feed.width &&
                 height == feed.height &&
-                url.equals(feed.url) &&
-                cover.equals(feed.cover) &&
+//                url.equals(feed.url) &&
+//                cover.equals(feed.cover) &&
                 author.equals(feed.author) &&
 //                topComment.equals(feed.topComment) &&
                 ugc.equals(feed.ugc);

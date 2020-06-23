@@ -5,8 +5,8 @@ import androidx.appcompat.app.AppCompatActivity
 import com.xkf.libannotation.ActivityDestination
 import com.xkf.ppjoke.R
 
-@ActivityDestination(pageUrl = "main/tabs/capture")
-class CaptureActivity : AppCompatActivity() {
+@ActivityDestination(pageUrl = "main/tabs/publish")
+class PublishActivity : AppCompatActivity() {
     
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

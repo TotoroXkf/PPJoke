@@ -112,6 +112,7 @@ class ListPlayerView : FrameLayout, IPlayTarget, PlayerControlView.VisibilityLis
             layoutParams.gravity = Gravity.BOTTOM
             addView(controlView, layoutParams)
         }
+
         if (pageListPlayer.playUrl == videoUrl) {
             onPlayerStateChanged(true, Player.STATE_READY)
         } else {

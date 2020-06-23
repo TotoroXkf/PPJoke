@@ -34,7 +34,7 @@ public class User implements Serializable {
         return id == user.id &&
                 avatar.equals(user.avatar) &&
                 name.equals(user.name) &&
-                description.equals(user.description) &&
+//                description.equals(user.description) &&
                 likeCount == user.likeCount &&
                 topCommentCount == user.topCommentCount &&
                 followCount == user.followCount &&

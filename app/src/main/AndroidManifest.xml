@@ -23,7 +23,7 @@
             android:required="false" />
 
         <activity android:name=".ui.login.LoginActivity" />
-        <activity android:name=".ui.publish.CaptureActivity" />
+        <activity android:name=".ui.publish.PublishActivity" />
         <activity
             android:launchMode="singleTask"
             android:name=".MainActivity"

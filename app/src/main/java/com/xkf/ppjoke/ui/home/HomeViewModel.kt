@@ -17,6 +17,7 @@ import com.xkf.ppjoke.ui.login.UserManager
 
 class HomeViewModel : AbstractViewModel<Feed>() {
     val cacheLiveData = MutableLiveData<PagedList<Feed>>()
+    var feedType: String = "all"
 
     @Volatile
     var withCache = true
@@ -50,7 +51,7 @@ class HomeViewModel : AbstractViewModel<Feed>() {
     private fun loadData(key: Int, callback: ItemKeyedDataSource.LoadCallback<Feed>) {
         if (withCache) {
             val request = ApiService.get<List<Feed>>("feeds/queryHotFeedsList")
-//                .addParam("feedType", null)
+                .addParam("feedType", feedType)
                 .addParam("userId", UserManager.getUserId())
                 .addParam("feedId", key)
                 .addParam("pageCount", 10)
@@ -73,7 +74,7 @@ class HomeViewModel : AbstractViewModel<Feed>() {
             })
         }
         val request = ApiService.get<List<Feed>>("feeds/queryHotFeedsList")
-//            .addParam("feedType", 0)
+            .addParam("feedType", feedType)
             .addParam("userId", UserManager.getUserId())
             .addParam("feedId", key)
             .addParam("pageCount", 10)
