@@ -7,7 +7,7 @@ import com.xkf.ppjoke.R
 
 @ActivityDestination(pageUrl = "main/tabs/publish")
 class PublishActivity : AppCompatActivity() {
-    
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_capture)

@@ -13,7 +13,7 @@
 
 
         <ImageView
-            android:id="@+id/action_close"
+            android:id="@+id/actionCloseView"
             android:layout_width="24dp"
             android:layout_height="24dp"
             android:layout_marginStart="@dimen/dp_16"

@@ -10,9 +10,9 @@ import com.google.android.material.bottomnavigation.BottomNavigationItemView
 import com.google.android.material.bottomnavigation.BottomNavigationMenuView
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.android.material.bottomnavigation.LabelVisibilityMode
+import com.xkf.libcommon.Utils
 import com.xkf.ppjoke.R
 import com.xkf.ppjoke.base.AppConfig
-import com.xkf.libcommon.Utils
 import com.xkf.ppjoke.model.BottomBar
 
 
@@ -24,16 +24,16 @@ class AppBottomBarView : BottomNavigationView {
         R.drawable.icon_tab_find,
         R.drawable.icon_tab_mine
     )
-    
+
     constructor(context: Context) : super(context)
     constructor(context: Context, attrs: AttributeSet?) : super(context, attrs)
-    
+
     init {
         val bottomBar = AppConfig.bottomBar
         setColors(bottomBar)
         addTabs(bottomBar)
     }
-    
+
     @SuppressLint("RestrictedApi")
     private fun addTabs(bottomBar: BottomBar) {
         val tabs = bottomBar.tabs
@@ -48,7 +48,7 @@ class AppBottomBarView : BottomNavigationView {
             val menuItem = menu.add(0, id, tab.index, tab.title)
             menuItem.setIcon(icons[tab.index])
         }
-        
+
         for (tab in tabs) {
             val iconSize = Utils.dpToPx(tab.size)
             val menuView = getChildAt(0) as? BottomNavigationMenuView
@@ -56,7 +56,7 @@ class AppBottomBarView : BottomNavigationView {
                 val itemView = getChildAt(tab.index) as? BottomNavigationItemView
                 itemView?.apply {
                     this.setIconSize(iconSize)
-                    
+
                     if (TextUtils.isEmpty(tab.title)) {
                         setIconTintList(ColorStateList.valueOf(Color.parseColor(tab.tintColor)))
                         setShifting(false)
@@ -65,7 +65,7 @@ class AppBottomBarView : BottomNavigationView {
             }
         }
     }
-    
+
     private fun setColors(bottomBar: BottomBar) {
         val stateList = arrayOf(
             intArrayOf(android.R.attr.state_selected),

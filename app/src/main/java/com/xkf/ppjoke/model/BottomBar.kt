@@ -5,7 +5,7 @@ class BottomBar {
     var inActiveColor: String = ""
     var selectTab: Int = 0
     var tabs: List<Tab> = mutableListOf()
-    
+
     class Tab {
         var enable: Boolean = false
         var index: Int = 0

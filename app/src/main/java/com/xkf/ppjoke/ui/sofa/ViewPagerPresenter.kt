@@ -26,11 +26,11 @@ class ViewPagerPresenter(
                 val customView = tabView?.customView as? TextView
                 customView?.let {
                     if (tabView.position == position) {
-                        customView.textSize = tabPresenter.getTabConfig().activeSize.toFloat();
-                        customView.typeface = Typeface.DEFAULT_BOLD;
+                        customView.textSize = tabPresenter.getTabConfig().activeSize.toFloat()
+                        customView.typeface = Typeface.DEFAULT_BOLD
                     } else {
-                        customView.textSize = tabPresenter.getTabConfig().normalSize.toFloat();
-                        customView.typeface = Typeface.DEFAULT;
+                        customView.textSize = tabPresenter.getTabConfig().normalSize.toFloat()
+                        customView.typeface = Typeface.DEFAULT
                     }
                 }
             }

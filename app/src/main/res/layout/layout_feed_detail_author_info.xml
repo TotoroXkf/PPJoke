@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <import type="com.xkf.libcommon.Utils" />
+
+        <variable
+            name="leftMargin"
+            type="java.lang.Integer" />
+
+        <variable
+            name="feed"
+            type="com.xkf.ppjoke.model.Feed" />
+
+        <variable
+            name="fullScreen"
+            type="java.lang.Boolean" />
+
+        <variable
+            name="owner"
+            type="androidx.lifecycle.LifecycleOwner" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/authorInfoView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@{leftMargin}"
+        android:background="@color/transparent"
+        android:paddingTop="3dp"
+        android:paddingBottom="3dp">
+
+        <com.xkf.ppjoke.view.PPImageView
+            android:id="@+id/avatarView"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_marginTop="1dp"
+            app:imageUrl="@{feed.author.avatar}"
+            app:isCircle="@{true}"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/authorNameView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="@dimen/dp_3"
+            android:text="@{feed.author.name}"
+            android:textColor="@{fullScreen?@color/color_white:@color/color_000}"
+            android:textSize="@dimen/sp_14"
+            android:textStyle="bold"
+            app:layout_constraintLeft_toRightOf="@+id/avatarView"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="神秘的jetpack" />
+
+        <TextView
+            android:id="@+id/create_time"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="@dimen/dp_2"
+            android:text="@{Utils.INSTANCE.calculateTime(feed.createTime)}"
+            android:textColor="@{fullScreen?@color/color_white:@color/color_000}"
+            android:textSize="@dimen/sp_12"
+            android:textStyle="normal"
+            app:layout_constraintLeft_toRightOf="@+id/avatarView"
+            app:layout_constraintTop_toBottomOf="@+id/authorNameView"
+            tools:text="3天前" />
+
+        <com.google.android.material.button.MaterialButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="16dp"
+            android:backgroundTint="@{fullScreen?@color/transparent:@color/color_theme}"
+            android:gravity="center"
+            android:paddingLeft="16dp"
+            android:paddingTop="5dp"
+            android:paddingRight="16dp"
+            android:paddingBottom="5dp"
+            android:text="@{feed.author.hasFollow?@string/has_follow:@string/unfollow}"
+            android:textColor="@color/color_white"
+            android:textSize="@dimen/sp_14"
+            app:backgroundTint="@color/color_theme"
+            app:cornerRadius="@dimen/dp_13"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:strokeColor="@{fullScreen?@color/color_white:@color/transparent}"
+            app:strokeWidth="1dp"
+            tools:text="已关注" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

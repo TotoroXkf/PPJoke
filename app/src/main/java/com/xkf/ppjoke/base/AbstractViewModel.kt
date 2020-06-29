@@ -11,24 +11,24 @@ abstract class AbstractViewModel<T> : ViewModel() {
     lateinit var dataSource: DataSource<Int, T>
     val pageLiveData: LiveData<PagedList<T>>
     val boundaryPageData = MutableLiveData<Boolean>()
-    
+
     private val factory = object : DataSource.Factory<Int, T>() {
         override fun create(): DataSource<Int, T> {
             dataSource = createDataSource()
             return dataSource
         }
     }
-    
+
     private val boundaryCallback = object : PagedList.BoundaryCallback<T>() {
         override fun onZeroItemsLoaded() {
             boundaryPageData.postValue(false)
         }
-        
+
         override fun onItemAtEndLoaded(itemAtEnd: T) {
             boundaryPageData.postValue(true)
         }
     }
-    
+
     init {
         val pageListConfig = PagedList.Config.Builder()
             .setPageSize(10)
@@ -39,7 +39,7 @@ abstract class AbstractViewModel<T> : ViewModel() {
             .setBoundaryCallback(boundaryCallback)
             .build()
     }
-    
-    
+
+
     abstract fun createDataSource(): DataSource<Int, T>
 }

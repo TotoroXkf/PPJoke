@@ -9,5 +9,5 @@ interface IPlayTarget {
 
     fun inActive()
 
-    fun isPlaying():Boolean
+    fun isPlaying(): Boolean
 }

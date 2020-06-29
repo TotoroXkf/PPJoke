@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <import type="com.xkf.libcommon.Utils" />
+
+        <variable
+            name="feed"
+            type="com.xkf.ppjoke.model.Feed" />
+    </data>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+
+        <FrameLayout
+            android:id="@+id/titleLayout"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dp_50">
+
+            <ImageView
+                android:id="@+id/actionCloseView"
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:layout_gravity="center_vertical"
+                android:layout_marginHorizontal="16dp"
+                android:src="@drawable/icon_back_black"
+                tools:ignore="ContentDescription" />
+
+            <TextView
+                android:id="@+id/titleView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:text="@string/feed_detail_type_image_title"
+                android:textColor="@color/color_000"
+                android:textSize="@dimen/sp_16" />
+
+            <include
+                android:id="@+id/authorInfoLayout"
+                layout="@layout/layout_feed_detail_author_info"
+                android:visibility="gone"
+                app:feed="@{feed}"
+                app:fullscreen="@{false}"
+                app:leftMargin="@{Utils.INSTANCE.dpToPx(60)}" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_gravity="bottom"
+                android:background="@color/color_divider" />
+        </FrameLayout>
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recyclerView"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1" />
+
+        <include
+            android:id="@+id/interactionLayout"
+            layout="@layout/layout_feed_detail_bottom_inateraction"
+            app:feed="@{feed}"
+            app:fullscreen="@{false}" />
+
+    </LinearLayout>
+</layout>

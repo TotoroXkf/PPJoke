@@ -29,9 +29,9 @@ class FixFragmentNavigator(
         if (className[0] == '.') {
             className = context.packageName + className
         }
-        
+
         val ft = manager.beginTransaction()
-        
+
         var enterAnim = navOptions?.enterAnim ?: -1
         var exitAnim = navOptions?.exitAnim ?: -1
         var popEnterAnim = navOptions?.popEnterAnim ?: -1
@@ -43,7 +43,7 @@ class FixFragmentNavigator(
             popExitAnim = if (popExitAnim != -1) popExitAnim else 0
             ft.setCustomAnimations(enterAnim, exitAnim, popEnterAnim, popExitAnim)
         }
-        
+
         val currentFragment = manager.primaryNavigationFragment
         if (currentFragment != null) {
             ft.hide(currentFragment)
@@ -57,7 +57,7 @@ class FixFragmentNavigator(
             ft.show(frag)
         }
         ft.setPrimaryNavigationFragment(frag)
-        
+
         val field = FragmentNavigator::class.java.getDeclaredField("mBackStack")
         field.isAccessible = true
         val mBackStack = field.get(this) as ArrayDeque<Int>
@@ -66,7 +66,7 @@ class FixFragmentNavigator(
         val isSingleTopReplacement = (navOptions != null && !initialNavigation
                 && navOptions.shouldLaunchSingleTop()
                 && mBackStack.peekLast() == destId)
-        
+
         val isAdded: Boolean
         isAdded = if (initialNavigation) {
             true
@@ -97,7 +97,7 @@ class FixFragmentNavigator(
             null
         }
     }
-    
+
     private fun generateBackStackName(backStackIndex: Int, destId: Int): String {
         return "$backStackIndex-$destId"
     }

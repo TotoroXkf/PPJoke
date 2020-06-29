@@ -22,7 +22,7 @@ object NavGraphBuilder {
             containerId
         )
         provider.addNavigator(fragmentNavigator)
-        
+
         val activityNavigator = provider.getNavigator(ActivityNavigator::class.java)
         val navGraph = NavGraph(NavGraphNavigator(provider))
         val destConfig = AppConfig.destinationMap
@@ -34,7 +34,7 @@ object NavGraphBuilder {
                 fragmentDestination.addDeepLink(destination.pageUrl)
                 navGraph.addDestination(fragmentDestination)
             } else {
-                val activityDestination = activityNavigator.createDestination();
+                val activityDestination = activityNavigator.createDestination()
                 activityDestination.id = destination.id
                 activityDestination.setComponentName(
                     ComponentName(
@@ -45,7 +45,7 @@ object NavGraphBuilder {
                 activityDestination.addDeepLink(destination.pageUrl)
                 navGraph.addDestination(activityDestination)
             }
-            
+
             if (destination.asStarter) {
                 navGraph.startDestination = destination.id
             }

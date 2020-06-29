@@ -1,4 +1,4 @@
-package com.xkf.ppjoke.ui.notification
+package com.xkf.ppjoke.ui.find
 
 import android.os.Bundle
 import android.view.LayoutInflater

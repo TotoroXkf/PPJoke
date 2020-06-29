@@ -25,7 +25,7 @@ abstract class AbstractListFragment<T, M : AbstractViewModel<T>> : Fragment(), O
     lateinit var viewBinding: LayoutRefreshViewBinding
     lateinit var pageListAdapter: PagedListAdapter<T, RecyclerView.ViewHolder>
     lateinit var viewModel: M
-    
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -34,22 +34,22 @@ abstract class AbstractListFragment<T, M : AbstractViewModel<T>> : Fragment(), O
         viewBinding = LayoutRefreshViewBinding.inflate(layoutInflater, container, false)
         return viewBinding.root
     }
-    
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        
+
         viewBinding.refreshLayout.setEnableRefresh(true)
         viewBinding.refreshLayout.setEnableLoadMore(true)
         viewBinding.refreshLayout.setOnRefreshListener(this)
         viewBinding.refreshLayout.setOnLoadMoreListener(this)
-        
+
         pageListAdapter = getAdapter()
         viewBinding.recyclerView.adapter = pageListAdapter
         val itemDecoration = DividerItemDecoration(activity, LinearLayoutManager.HORIZONTAL)
         itemDecoration.setDrawable(requireActivity().getDrawable(R.drawable.list_divider)!!)
         viewBinding.recyclerView.addItemDecoration(itemDecoration)
         viewBinding.recyclerView.itemAnimator = null
-        
+
         val type = javaClass.genericSuperclass as ParameterizedType
         val arguments = type.actualTypeArguments
         if (arguments.size > 1) {
@@ -63,24 +63,24 @@ abstract class AbstractListFragment<T, M : AbstractViewModel<T>> : Fragment(), O
                 finishRefresh(it)
             })
         }
-        
+
         afterCreateView()
     }
-    
+
     abstract fun afterCreateView()
-    
+
     abstract fun getAdapter(): PagedListAdapter<T, RecyclerView.ViewHolder>
-    
+
     fun submit(pageList: PagedList<T>) {
         if (pageList.isNotEmpty()) {
             pageListAdapter.submitList(pageList)
         }
         finishRefresh(pageList.size > 0)
     }
-    
+
     private fun finishRefresh(hasData: Boolean) {
         val currentList = pageListAdapter.currentList
-        
+
         val state = viewBinding.refreshLayout.state
         Log.e("xkf", "finishRefresh: $state")
         if (state.isFooter && state.isOpening) {
@@ -88,7 +88,7 @@ abstract class AbstractListFragment<T, M : AbstractViewModel<T>> : Fragment(), O
         } else if (state.isHeader && state.isOpening) {
             viewBinding.refreshLayout.finishRefresh()
         }
-        
+
         val finalHasData = hasData || currentList != null && currentList.isNotEmpty()
         if (finalHasData) {
             viewBinding.emptyView.visibility = View.GONE
